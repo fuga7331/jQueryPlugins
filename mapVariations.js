@@ -1,4 +1,4 @@
-var app = (function ($) {
+var app = (function ($,app) {
 	function negate(pred) {
 		return function () {
 			return ! pred.apply(this, arguments);
@@ -40,7 +40,7 @@ var app = (function ($) {
 	//for all x in jQuery array : predicate(x)
 	$.fn.all = function (pred) {
 		return !this.is( negate(pred) );
-	}
+	};
 	
 	//map over array and return an object
 	//return value of func should be either:
@@ -69,12 +69,13 @@ var app = (function ($) {
 		createObj : createObj,
 		objEq : objEq,
 		negate : negate
-	};
-	if(app && app.testInherit)
+	};	
+	var publicVars = {};
+	if (app){
 		$.extend(app.testInherit,testInherit);
-	else if (app)
-		$.extend(app,{testInherit: testInherit});
-	else
+		$.extend(app,publicVars);
+		
+	}else
 		app = {testInherit: testInherit};
 	return app;
 }(jQuery, app));

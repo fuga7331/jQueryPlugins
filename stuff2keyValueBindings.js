@@ -1,4 +1,4 @@
-var app = (function ($) {
+var app = (function ($,app) {
 	function dl2obj (jQueryArr, dl) {
 		var keys = $("dt",dl),
 			values = $("dd",dl);
@@ -14,7 +14,6 @@ var app = (function ($) {
 			var args = Array.prototype.slice.call(arguments, 0);
 			return func.apply(this, [this].concat(args));
 		}
-	
 	}
 	$.fn.dl2obj = function2jQueryPlugin(dl2obj);
 	
@@ -23,11 +22,15 @@ var app = (function ($) {
 		dl2obj : dl2obj
 	};
 
-	if(app && app.testInherit)
+	var publicVars = {
+		function2jQueryPlugin : function2jQueryPlugin
+	
+	};
+	if (app){
 		$.extend(app.testInherit,testInherit);
-	else if (app)
-		$.extend(app,{testInherit: testInherit});
-	else
+		$.extend(app,publicVars);
+		
+	}else
 		app = {testInherit: testInherit};
 	return app;
 }(jQuery, app));

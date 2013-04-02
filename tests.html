@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<script src="jquery-1.9.1.js"></script>
+		<script src="mapVariations.js"></script>
+		<script src="stuff2keyValueBindings.js"></script>
+		<script src="sortFilterTables.js"></script>
+		<script src="tests.js"></script>
+	</head>
+	<body>
+		<table id="tbl1">
+			<thead>
+				<tr>
+					<th>c0</th>
+					<th>c1</th>
+					<th>c2</th>
+					<th>c3</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>a</td>
+					<td>b</td>
+					<td>c</td>
+					<td>d</td>
+				</tr>
+				<tr>
+					<td>aa</td>
+					<td>bb</td>
+					<td>cc</td>
+					<td>dd</td>
+				</tr>
+			</tbody>
+		</table>
+		<script>
+			var t = new Test();
+			console.log(t.test1());
+			console.log(t.test2());
+			console.log(t.test3("#tbl1", "c3", 3));
+		</script>
+	</body>
+</html>
+
