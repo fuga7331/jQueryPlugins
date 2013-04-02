@@ -64,28 +64,17 @@ var app = (function ($) {
 	};
 
 	
-	function testInherit(that) {
-		that.keyValueArray2obj = keyValueArray2obj;
-		that.createObj = createObj;
-		that.objEq = objEq;
-		that.negate = negate;
-	}
-	
-
-	return {
-		testInherit: testInherit,
-		
+	var testInherit = {
+		keyValueArray2obj : keyValueArray2obj,
+		createObj : createObj,
+		objEq : objEq,
+		negate : negate
 	};
-}(jQuery));
-
-//dl2obj("dl:first");
-function Test() {
-	app.testInherit(this);
-	this.test = function () {
-		return  this.objEq(this.keyValueArray2obj( [[]] ),{}) &&
-				this.objEq(this.keyValueArray2obj( [[1,2],["a","b"]] ), {"1": 2, "a": "b"}) &&
-				this.objEq($(["all","ppl"]).map2obj(function (a,c) {return [[c, c]] }),
-					  {"all": "all", "ppl": "ppl"}) &&
-				true;
-	}
-}
+	if(app && app.testInherit)
+		$.extend(app.testInherit,testInherit);
+	else if (app)
+		$.extend(app,{testInherit: testInherit});
+	else
+		app = {testInherit: testInherit};
+	return app;
+}(jQuery, app));
